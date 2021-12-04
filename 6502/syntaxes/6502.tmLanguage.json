@@ -1,53 +1,94 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "6502 assembly",
+	"fileTypes": [
+		"*.6502",
+		"*.asm"
+	],
 	"patterns": [
 		{
-			"include": "#comments"
+			"name": "string.6502",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape",
+					"match": "\\\\."
+				}
+			]
 		},
 		{
-			"include": "#operators"
+			"name": "comment",
+			"begin": ";",
+			"end": "\n"
 		},
 		{
-			"include": "#keywords"
+			"name": "support.type",
+			"comment": "Shifting with A appended",
+			"match": "(?i)[\\t| ]+\\b(asl|lsr|rol|ror)\\b[\\t| ]+\\b(a)\\b"
 		},
 		{
-			"include": "#strings"
+			"name": "support.type",
+			"comment": "Basic commands",
+			"match": "(?i)[\\t| ]+\\b(adc|and|asl|bit|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|sbc|sec|sed|sei|sta|stx|sty|tax|txa|tay|tya|tsx|txs)\\b"
 		},
 		{
-			"include": "#numbers"
+			"name": "support.type",
+			"comment": "Indexing with X and Y",
+			"match": "(?i)\\,[\\t| ]+\\b(x|y)\\b"
 		},
 		{
-			"include": "#reserved-words"
+			"name": "entity.name.section",
+			"comment": "Navigational commands",
+			"match": "(?i)[\\t| ]+\\b(bcc|bcs|beq|bmi|bne|bpl|brk|bvc|bvs|jmp|jsr|rti|rts)\\b"
+		},
+		{
+			"name": "markup.heading",
+			"comment": "Labels",
+			"match": "^[\\.]?[a-zA-Z]{1}[0-9a-zA-Z]*\\:"
+		},
+		{
+			"name": "storage",
+			"match": "\\#\\b(high|low)\\b"
+		},
+		{
+			"name": "storage",
+			"match": "[\\t| ]+\\.\\b(db|dw|byte|word)\\b"
+		},
+		{
+			"name": "storage",
+			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank)\\b"
+		},
+		{
+			"name": "storage",
+			"match": "[\\t| ]+\\.\\b(inesprg|ineschr|inesmap|inesmir)\\b"
+		},
+		{
+			"name": "constant.numeric",
+			"comment": "Hexadecimal",
+			"match": "[#]?[$][0-9a-fA-F]+"
+		},
+		{
+			"name": "constant.numeric",
+			"comment": "Binary",
+			"match": "[#]?[%][0-1]{8,}"
+		},
+		{
+			"name": "constant.numeric",
+			"comment": "Decimal",
+			"match": "[#]?[0-9]+"
 		}
+		
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.6502",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
 		"strings": {
 			"name": "string.quoted.double.6502",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.6502",
+					"name": "constant.character.escape",
 					"match": "\\\\."
-				}
-			]
-		},
-		"comments": {
-			"patterns": [
-				{
-					"begin": "#\\!",
-					"beginCaptures": {
-						"0": {
-						}
-					},
-					"end": "\\n"
 				}
 			]
 		}
