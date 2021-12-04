@@ -1,0 +1,25 @@
+{
+    "name": "6502",
+    "displayName": "NESASM Syntax Highlighting",
+    "description": "NES 6502 assembly code",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.62.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "6502",
+            "aliases": ["6502 assembly", "6502"],
+            "extensions": [".6502"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "6502",
+            "scopeName": "source.6502",
+            "path": "./syntaxes/6502.tmLanguage.json"
+        }]
+    }
+}
