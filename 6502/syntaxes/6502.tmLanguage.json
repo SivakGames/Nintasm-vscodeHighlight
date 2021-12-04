@@ -45,7 +45,7 @@
 		{
 			"name": "markup.heading",
 			"comment": "Labels",
-			"match": "^[\\.]?[a-zA-Z]{1}[0-9a-zA-Z]*\\:"
+			"match": "^[\\.]?[a-zA-Z]{1}[0-9a-zA-Z_]*\\:"
 		},
 		{
 			"name": "storage",
@@ -57,7 +57,7 @@
 		},
 		{
 			"name": "storage",
-			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank)\\b"
+			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank|rsset)\\b"
 		},
 		{
 			"name": "storage",
@@ -66,17 +66,17 @@
 		{
 			"name": "constant.numeric",
 			"comment": "Hexadecimal",
-			"match": "[#]?[$][0-9a-fA-F]+"
+			"match": "[$][0-9a-fA-F]+"
 		},
 		{
 			"name": "constant.numeric",
 			"comment": "Binary",
-			"match": "[#]?[%][0-1]{8,}"
+			"match": "[%][0-1]{8,}"
 		},
 		{
 			"name": "constant.numeric",
 			"comment": "Decimal",
-			"match": "[#]?[0-9]+"
+			"match": "[0-9]+"
 		}
 		
 	],
