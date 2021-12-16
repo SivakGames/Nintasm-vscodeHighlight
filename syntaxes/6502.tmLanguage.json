@@ -49,12 +49,22 @@
 		},
 		{
 			"name": "markup.heading",
-			"comment": "Define word data",
-			"match": "(?!\\.dw) [a-zA-Z0-9_]+"
+			"comment": "Define word (.dw) data",
+			"match": "(?<=\\.dw\\s+)\\s*\\w+\\s*(,\\s*\\w+\\s*)*"
+		},
+		{
+			"name": "markup.heading",
+			"comment": "Navigational highlights",
+			"match": "(?i)(?<=(bcc|bcs|beq|bmi|bne|bpl|brk|bvc|bvs|jmp|jsr|rti|rts)\\s+)\\.?\\w+"
+		},
+		{
+			"name": "markup.heading",
+			"comment": "Low/High inner highlights",
+			"match": "(?<=(low|high)\\()\\s*\\w+\\s*(?=\\))"
 		},
 		{
 			"name": "storage",
-			"match": "\\#\\b(high|low)\\b"
+			"match": "\\#?\\b(high|low)\\b"
 		},
 		{
 			"name": "storage",
