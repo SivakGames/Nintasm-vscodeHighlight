@@ -91,7 +91,8 @@
 		{
 			"name": "constant.numeric",
 			"comment": "Decimal",
-			"match": "\\d+"
+			"match": "\\b([0-9]+)\\b(?![a-zA-Z])"
+			
 		}
 		
 	],
