@@ -48,6 +48,11 @@
 			"match": "^[\\.]?[a-zA-Z]{1}[0-9a-zA-Z_]*\\:"
 		},
 		{
+			"name": "markup.heading",
+			"comment": "Define word data",
+			"match": "(?!\\.dw) [a-zA-Z0-9_]+"
+		},
+		{
 			"name": "storage",
 			"match": "\\#\\b(high|low)\\b"
 		},
@@ -57,7 +62,7 @@
 		},
 		{
 			"name": "storage",
-			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank|rsset)\\b"
+			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank|rs|rsset)\\b"
 		},
 		{
 			"name": "storage",
@@ -76,7 +81,7 @@
 		{
 			"name": "constant.numeric",
 			"comment": "Decimal",
-			"match": "[0-9]+"
+			"match": "\\d+"
 		}
 		
 	],
