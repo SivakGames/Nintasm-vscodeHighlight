@@ -64,7 +64,7 @@
 		},
 		{
 			"name": "storage",
-			"match": "\\#?\\b(high|low)\\b"
+			"match": "\\#?\\b(high|low|bank)\\b"
 		},
 		{
 			"name": "storage",
@@ -72,7 +72,7 @@
 		},
 		{
 			"name": "storage",
-			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank|rs|rsset)\\b"
+			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank|rs|rsset|func)\\b"
 		},
 		{
 			"name": "storage",
