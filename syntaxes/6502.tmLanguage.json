@@ -1,13 +1,87 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "6502 assembly",
+	"name": "6502 assembly (NESASM/Nintasm)",
 	"fileTypes": [
 		"*.6502",
 		"*.asm"
 	],
 	"patterns": [
 		{
-			"name": "string.6502",
+			"include": "#comments"
+		},
+		{
+			"include": "#punctuation"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#chars"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#instructions"
+		},
+		{
+			"include": "#instructions-navi"
+		},
+		{
+			"include": "#labels"
+		},
+		{
+			"include": "#directives"
+		},
+		{
+			"include": "#labeled-directives"
+		},
+		{
+			"include": "#functions"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.6502",
+					"match": ";.*$"
+				}
+			]
+		},
+		"punctuation": {
+			"patterns": [
+				{
+					"name": "punctuation.parentheses.6502",
+					"match": "\\(|\\)"
+				},
+				{
+					"name": "punctuation.squarebrackets.6502",
+					"match": "\\[|\\]"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.binary.6502",
+					"match": "%[01]+\\b"
+				},
+				{
+					"name": "constant.numeric.hexadecimal.6502",
+					"match": "(\\$[0-9A-Fa-f]+\\b)"
+				},
+				{
+					"name": "constant.numeric.decimal.6502",
+					"match": "\\b[0-9]+\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.6502",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
@@ -17,94 +91,123 @@
 				}
 			]
 		},
-		{
-			"name": "comment",
-			"begin": ";",
-			"end": "\n"
-		},
-		{
-			"name": "support.type",
-			"comment": "Shifting with A appended",
-			"match": "(?i)[\\t| ]+\\b(asl|lsr|rol|ror)\\b[\\t| ]+\\b(a)\\b"
-		},
-		{
-			"name": "support.type",
-			"comment": "Basic commands",
-			"match": "(?i)[\\t| ]+\\b(adc|and|asl|bit|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|sbc|sec|sed|sei|sta|stx|sty|tax|txa|tay|tya|tsx|txs)\\b"
-		},
-		{
-			"name": "support.type",
-			"comment": "Indexing with X and Y",
-			"match": "(?i)\\,[\\t| ]+\\b(x|y)\\b"
-		},
-		{
-			"name": "entity.name.section",
-			"comment": "Navigational commands",
-			"match": "(?i)[\\t| ]+\\b(bcc|bcs|beq|bmi|bne|bpl|brk|bvc|bvs|jmp|jsr|rti|rts)\\b"
-		},
-		{
-			"name": "markup.heading",
-			"comment": "Labels",
-			"match": "^[\\.]?[a-zA-Z]{1}[0-9a-zA-Z_]*\\:"
-		},
-		{
-			"name": "markup.heading",
-			"comment": "Define word (.dw) data",
-			"match": "(?<=\\.dw\\s+)\\s*\\w+\\s*(,\\s*\\w+\\s*)*"
-		},
-		{
-			"name": "markup.heading",
-			"comment": "Navigational highlights",
-			"match": "(?i)(?<=(bcc|bcs|beq|bmi|bne|bpl|brk|bvc|bvs|jmp|jsr|rti|rts)\\s+)\\.?\\w+"
-		},
-		{
-			"name": "markup.heading",
-			"comment": "Low/High inner highlights",
-			"match": "(?<=(low|high)\\()\\s*\\w+\\s*(?=\\))"
-		},
-		{
-			"name": "storage",
-			"match": "\\#?\\b(high|low|bank)\\b"
-		},
-		{
-			"name": "storage",
-			"match": "[\\t| ]+\\.\\b(db|dw|byte|word)\\b"
-		},
-		{
-			"name": "storage",
-			"match": "[\\t| ]+\\.\\b(include|incbin|incchr|org|bank|rs|rsset|func)\\b"
-		},
-		{
-			"name": "storage",
-			"match": "[\\t| ]+\\.\\b(inesprg|ineschr|inesmap|inesmir)\\b"
-		},
-		{
-			"name": "constant.numeric",
-			"comment": "Hexadecimal",
-			"match": "[$][0-9a-fA-F]+"
-		},
-		{
-			"name": "constant.numeric",
-			"comment": "Binary",
-			"match": "[%][0-1]{8,}"
-		},
-		{
-			"name": "constant.numeric",
-			"comment": "Decimal",
-			"match": "\\b([0-9]+)\\b(?![a-zA-Z])"
-			
-		}
-		
-	],
-	"repository": {
-		"strings": {
-			"name": "string.quoted.double.6502",
-			"begin": "\"",
-			"end": "\"",
+		"chars": {
+			"name": "string.quoted.single.6502",
+			"begin": "'",
+			"end": "'",
 			"patterns": [
 				{
 					"name": "constant.character.escape",
 					"match": "\\\\."
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operators.immediate.6502",
+					"match": "#"
+				},
+				{
+					"name": "keyword.operators.zeropage.6502",
+					"match": "<"
+				},
+				{
+					"name": "keyword.operators.equality.6502",
+					"match": "(?i)=|\\s+equ\\s+"
+				},
+				{
+					"name": "keyword.operators.math.6502",
+					"match": "\\+|-|\\*|/|\\&|\\||\\^|~|<<|>>"
+				}
+			]
+		},
+		"instructions": {
+			"patterns": [
+				{
+					"comment": "Shift instruction with A operand",
+					"name": "support.type",
+					"match": "(?i)(?<=(asl|lsr|rol|ror))\\s+\\b(?:a)\\b\\s*"
+				},
+				{
+					"comment": "Indexed instruction with X and Y",
+					"name": "support.type",
+					"match": "(?i)(?<=\\,)\\s*\\b(?:x|y)\\b\\s*$"
+				},
+				{
+					"comment": "Basic instructions",
+					"name": "support.type",
+					"match": "^\\s+\\b(?i:adc|and|asl|bit|brk|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|sbc|sec|sed|sei|sta|stx|sty|tax|txa|tay|tya|tsx|txs)\\b"
+				}
+			]
+		},
+		"instructions-navi": {
+			"patterns": [
+				{
+					"comment": "Navigational commands",
+					"name": "entity.name.section",
+					"match": "^\\s+\\b(?i:bcc|bcs|beq|bmi|bne|bpl|bvc|bvs|jmp|jsr|rti|rts)\\b"
+				},
+				{
+					"comment": "Navigational commands (highlight label after)",
+					"name": "markup.heading",
+					"match": "(?i)(?<=(bcc|bcs|beq|bmi|bne|bpl|bvc|bvs|jmp|jsr))\\s+\\.?\\w+"
+				}
+			]
+		},
+		"labels": {
+			"patterns": [
+				{
+					"comment": "General Labels",
+					"name": "markup.heading",
+					"match": "^\\.?\\b[A-Za-z_][0-9A-Za-z_]*\\b"
+				}
+			]
+		},
+		"directives": {
+			"patterns": [
+				{
+					"comment": "Directives (iNES)",
+					"name": "storage",
+					"match": "^\\s+\\.\\b(?i:inesprg|ineschr|inesmap|inesmir)\\b"
+				},
+				{
+					"comment": "Directives (ROM layout)",
+					"name": "storage",
+					"match": "^\\s+\\.\\b(?i:bank|org|rsset)\\b"
+				},
+				{
+					"comment": "Directives (bytes/words)",
+					"name": "storage",
+					"match": "^\\s+\\.\\b(?i:db|dw|byte|word|ds|incbin|incchr|include|defchar|repeat)\\b"
+				}
+			]
+		},
+		"labeled-directives": {
+			"patterns": [
+				{
+					"comment": "User-labeled directives (Single line)",
+					"name": "storage",
+					"match": "\\s+\\.\\b(?i:func|rs)\\b"
+				},
+				{
+					"comment": "User-labeled block directives (Opening)",
+					"name": "storage",
+					"match": "\\s+\\.\\b(?i:charmap|macro)\\b"
+				},
+				{
+					"comment": "User-labeled block directives (Ending)",
+					"name": "storage",
+					"match": "\\s+\\.\\b(?i:endcharmap|endm)\\b"
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"comment": "Assembler functions",
+					"name": "storage",
+					"match": "\\b(?i:high|low|bank|strlen|sin|cos|sqrt)\\b"
 				}
 			]
 		}

@@ -1,14 +1,22 @@
 # 6502 README
 
-This is the README for your extension "6502". After writing up a brief description, we recommend including the following sections.
+Provides syntax highlighting for NESASM (an NES 6502 assembler) in VS Code.
 
 ## Features
 
-Provides syntax highlighting for NESASM (an NES 6502 assembler) in VS Code.
+Highlights all the 6502 instructions, 6502 number types (i.e. binary, hex), NESASM-specific directives, and labels for labeled operations.
 
 ## Requirements
 
 Target files should end with either a `.6502` or `.asm` extension.
+
+## Custom Installation
+
+This is not on the Marketplace.  On Windows, simply move these files (including the parent folder) to the following folder:
+
+```text
+\Users\##USER_PROFILE##\.vscode\extensions
+```
 
 ## Extension Settings
 
@@ -16,12 +24,8 @@ N/A
 
 ## Known Issues
 
-Numbers in text that aren't supposed to be numbers get highlighted.
+None *currently*.
 
 -----------------------------------
 
-&nbsp;
-
------------------------------------
-
-## May your retro programming be productive
+**May your retro programming be productive!**
