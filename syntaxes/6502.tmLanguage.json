@@ -179,7 +179,7 @@
 				{
 					"comment": "Directives (bytes/words)",
 					"name": "storage",
-					"match": "^\\s+\\.\\b(?i:db|dw|byte|word|ds|incbin|incchr|include|defchar|repeat)\\b"
+					"match": "^\\s+\\.\\b(?i:db|dw|byte|word|ds|incbin|incchr|include|defchar|repeat|endrepeat)\\b"
 				}
 			]
 		},
