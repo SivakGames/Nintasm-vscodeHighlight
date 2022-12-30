@@ -31,15 +31,10 @@
 				},
 				"2": {
 					"patterns": [
-						{
-							"include": "#DirectiveStart"
-						},
-						{
-							"include": "#Instructions"
-						},
-						{
-							"include": "#InstructionsNavi"
-						}
+						{ "include": "#DirectiveStart" },
+						{ "include": "#Instructions" },
+						{ "include": "#InstructionsNavi" },
+						{ "include": "#MiscUnknownOperation" }
 					]
 				}
 			}
@@ -135,7 +130,10 @@
 				"1": { "name": "constant.character.escape" },
 				"2": {
 					"patterns": [
-						{ "include": "#Directives" }
+						{ "include": "#Directives" },
+						{ "include": "#numbers" },
+						{ "include": "#strings" },
+						{ "include": "#operators" }
 					]
 				}
 			}
@@ -353,6 +351,25 @@
 						}
 					}
 					
+				}
+			]
+		},
+		"MiscUnknownOperation": {
+			"patterns": [
+				{
+					"comment": "Generally things like operands after macro names",
+					"match": "(?:\\w+)\\s+(\\S.*)",
+					"captures": {
+						"1": {
+								"patterns": [
+								{ "include": "#numbers" },
+								{ "include": "#operators" },
+								{ "include": "#indexes" },
+								{ "include": "#functions" },
+								{ "include": "#strings" }
+							]
+						}
+					}
 				}
 			]
 		},
