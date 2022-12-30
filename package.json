@@ -24,7 +24,7 @@
 			{
 				"id": "6502",
 				"aliases": [
-					"6502 Assembler",
+					"6502 Assembler (NESASM/Nintasm)",
 					"6502"
 				],
 				"extensions": [

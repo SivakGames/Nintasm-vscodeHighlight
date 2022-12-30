@@ -1,6 +1,6 @@
 # 6502 README
 
-Provides syntax highlighting for NESASM (an NES 6502 assembler) in VS Code.
+Provides syntax highlighting for NESASM (an NES 6502 assembler) in VS Code.  Based on the TextMate syntax
 
 ## Features
 
