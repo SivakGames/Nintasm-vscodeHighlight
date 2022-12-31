@@ -1,8 +1,8 @@
 {
     "name": "6502",
     "displayName": "NESASM 6502 Syntax Highlighting",
-    "description": "Support for 6502 assembly code on NESASM",
-    "version": "1.0.0",
+    "description": "Support for 6502 assembly code on Nintasm/NESASM",
+    "version": "2.0.0",
 	"publisher": "Sivak",
     "categories": [
         "Programming Languages"
