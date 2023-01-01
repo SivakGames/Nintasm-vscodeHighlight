@@ -43,19 +43,23 @@
 			"patterns": [
 				{
 					"comment": "Constant label",
-					"match": "^(?i)([A-Za-z_]\\w*)(\\s*=\\s*|\\s+equ\\s+)(\\S.*)",
+					"match": "^(?i)(?:([A-Za-z_]\\w*)|(\\.[A-Za-z_]\\w*))(\\s*=\\s*|\\s+equ\\s+)(\\S.*)",
 					"captures": {
 						"1": {
-							"name": "support.class"
+							"name": "markup.heading"
 						},
 						"2": {
-							"name": "constant.character.escape"
+							"name": "constant.numeric"
 						},
 						"3": {
+							"name": "constant.character.escape"
+						},
+						"4": {
 							"patterns": [
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#strings" },
+								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
 							]
 						}
@@ -81,6 +85,7 @@
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#strings" },
+								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
 							]
 						}
@@ -176,7 +181,7 @@
 				},
 				{
 					"comment": "Directives (bytes)",
-					"match": "(?i)(db|byte|ds)\\s+(\\S.*)",
+					"match": "(?i)(db|byte|rb|reversebyte|ds)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -456,7 +461,7 @@
 					}
 				},
 				{
-					"match": "\\b(PPUCTRL)(?:\\.(nameTable0|nameTable1|nameTable2|nameTable3|drawDirection|spritePatternTable|BGPatternTable|use8x16Sprites|masterSlave|enableNMI))?\\b",
+					"match": "\\b(PPUCTRL)(?:\\.(nameTable0|nameTable1|nameTable2|nameTable3|drawDirection|spritePatternTable|bgPatternTable|use8x16Sprites|masterSlave|enableNMI))?\\b",
 					"captures": {
 						"1": {
 							"name": "string"
@@ -467,7 +472,7 @@
 					}
 				},
 				{
-					"match": "\\b(PPUMASK)(?:\\.(grayscale|BGclip|spriteClip|showBG|showSprites|emphasizeRed|emphasizeGreen|emphasizeBlue))?\\b",
+					"match": "\\b(PPUMASK)(?:\\.(grayscale|disableBgClip|disableSpriteClip|showBg|showSprites|emphasizeRed|emphasizeGreen|emphasizeBlue))?\\b",
 					"captures": {
 						"1": {
 							"name": "string"
@@ -478,7 +483,18 @@
 					}
 				},
 				{
-					"match": "\\b(PPUSTATUS|PPUSCROLL|PPUADDR|PPUDATA)\\b",
+					"match": "\\b(PPUADDR)(?:\\.(nt[0-3]line[0-9]{1,2}|nt[0-3]attLine[0-7]|palBg[0-3]|palSpr[0-3]))?\\b",
+					"captures": {
+						"1": {
+							"name": "string"
+						},
+						"2": {
+							"name": "entity.name.class"
+						}
+					}
+				},
+				{
+					"match": "\\b(PPUSTATUS|PPUSCROLL|PPUDATA)\\b",
 					"captures": {
 						"1": {
 							"name": "string"
