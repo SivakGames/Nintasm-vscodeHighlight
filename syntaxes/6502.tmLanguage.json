@@ -166,7 +166,7 @@
 				},
 				{
 					"comment": "Directives (ROM layout)",
-					"match": "(?i)(bank|org|rsset)\\s+(\\S.*)",
+					"match": "(?i)(romsegment|romsegmentcreate|romsegmentbanksize|romsegmentname|bank|org|rsset)\\b\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -181,7 +181,7 @@
 				},
 				{
 					"comment": "Directives (bytes)",
-					"match": "(?i)(db|byte|rb|reversebyte|ds)\\s+(\\S.*)",
+					"match": "(?i)(db|byte|rdb|reversebyte|ds)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -197,7 +197,7 @@
 				},
 				{
 					"comment": "Directives (words)",
-					"match": "(?i)(dw|word)\\s+(\\S.*)",
+					"match": "(?i)(dw|word|dwbe|wordbigendian)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -441,7 +441,7 @@
 		
 		
 		"labeled-directives-multi": {
-			"match": "(?i)\\b(charmap|endcharmap|macro|endm)\\b",
+			"match": "(?i)\\b(charmap|endcharmap|macro|endm|namespace|endnamespace)\\b",
 			"captures": {
 				"1": { "name": "storage" }
 			}
@@ -483,7 +483,18 @@
 					}
 				},
 				{
-					"match": "\\b(PPUADDR)(?:\\.(nt[0-3]line[0-9]{1,2}|nt[0-3]attLine[0-7]|palBg[0-3]|palSpr[0-3]))?\\b",
+					"match": "\\b(PPUADDR)(?:\\.(nt[0-3]line[0-9]{1,2}|nt[0-3]attLine[0-7]|palBg[0-3]|palSprite[0-3]))?\\b",
+					"captures": {
+						"1": {
+							"name": "string"
+						},
+						"2": {
+							"name": "entity.name.class"
+						}
+					}
+				},
+				{
+					"match": "\\b(OAMATTR)(?:\\.(pal[0-3]|priority|flipHoriz|flipVert))?\\b",
 					"captures": {
 						"1": {
 							"name": "string"
@@ -505,9 +516,9 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(high|low|bank|strlen|sin|cos|sqrt|to_charmap)\\b",
+			"match": "(?i)\\b(high|low|bank|reversestr|strlen|sin|cos|sqrt|tocharmap)\\b",
 			"captures": {
-				"1": { "name": "storage" }
+				"1": { "name": "support.type" }
 			}
 		},
 
