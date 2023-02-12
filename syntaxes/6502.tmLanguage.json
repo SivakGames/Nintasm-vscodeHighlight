@@ -10,10 +10,7 @@
 	],
 	"patterns": [
 		{ "include": "#Main-Comments" },
-		{ "include": "#Main-Constants" },
-		{ "include": "#Main-LabeledOpsSingle" },
-		{ "include": "#Main-LabeledOpsMulti" },
-		{ "include": "#Main-Labels" },
+		{ "include": "#Main-LabelLine" },
 		{ "include": "#Main-PreLine" }
 	],
 	"repository": {
@@ -22,6 +19,19 @@
 			"name": "comment.line",
 			"match": "(;).*$",
 			"captures": { "1": { "name": "punctuation.definition.comment" }	}
+		},
+		"Main-LabelLine": {
+			"match": "^(\\S+[^;]+)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{ "include": "#Main-Constants" },
+						{ "include": "#Main-LabeledOpsSingle" },
+						{ "include": "#Main-LabeledOpsMulti" },
+						{ "include": "#Main-Labels" }
+					]
+				}
+			}
 		},
 		"Main-PreLine": {
 			"match": "^(\\s)+([^;]+)",
@@ -207,7 +217,8 @@
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
-								{ "include": "#label-operands" }
+								{ "include": "#label-operands" },
+								{ "include": "#assembler-constants" }
 							]
 						}
 					}
@@ -426,9 +437,10 @@
 			"match": "(\\+|-|\\*|/|%|\\&|\\||\\^|~|<|>|\\\\)"
 		},
 		"indexes": {
-			"match": "(?i),\\s*\\b(x|y)\\b",
+			"match": "(?i)(,)\\s*\\b(x|y)\\b",
 			"captures": {
-				"1": { "name": "storage" }
+				"1": { "name": "constant.character.escape" },
+				"2": { "name": "storage" }
 			}
 		},
 
