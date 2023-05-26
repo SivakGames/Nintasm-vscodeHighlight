@@ -44,6 +44,7 @@
 						{ "include": "#DirectiveStart" },
 						{ "include": "#Instructions" },
 						{ "include": "#InstructionsNavi" },
+						{ "include": "#AssemblerMacros" },
 						{ "include": "#MiscUnknownOperation" }
 					]
 				}
@@ -176,7 +177,7 @@
 				},
 				{
 					"comment": "Directives (ROM layout)",
-					"match": "(?i)(romsegment|romsegmentcreate|romsegmentbanksize|romsegmentname|bank|org|rsset)\\b\\s+(\\S.*)",
+					"match": "(?i)(romsegment|bank|org|rsset)\\b\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -191,7 +192,7 @@
 				},
 				{
 					"comment": "Directives (bytes)",
-					"match": "(?i)(db|byte|rdb|reversebyte|ds)\\s+(\\S.*)",
+					"match": "(?i)(db|byte|rdb|reversebyte|ds|pad)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -224,20 +225,43 @@
 					}
 				},
 				{
+					"comment": "Directives (multiline)",
+					"match": "(?i)(mo|multiOp)\\s+([^:]*)(\\S.*)",
+					"captures": {
+						"1": {
+							"name": "storage"
+						},
+						"2": {
+							"patterns": [
+								{ "include": "#DirectiveStart" },
+								{ "include": "#Instructions" },
+								{ "include": "#InstructionsNavi" }
+							]
+						},
+						"3": {
+							"patterns": [
+								{ "include": "#MultilineFollowupOperation" }
+							]
+						}
+					}
+				},
+				{
 					"comment": "Directives (files)",
 					"match": "(?i)(incbin|include)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
 							"patterns": [
-								{ "include": "#strings" }
+								{ "include": "#strings" },
+								{ "include": "#assembler-constants" },
+								{ "include": "#numbers" }
 							]
 						}
 					}
 				},
 				{
 					"comment": "Directives (Misc)",
-					"match": "(?i)(autozp|autozeropage|repeat|defchar)\\s+(\\S.*)",
+					"match": "(?i)(autozp|autozeropage|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -252,7 +276,7 @@
 				},
 				{
 					"comment": "Directives (No operands)",
-					"match": "(?i)(endrepeat)",
+					"match": "(?i)(endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap)",
 					"captures": {
 						"1": { "name": "storage" }
 					}
@@ -382,6 +406,55 @@
 				}
 			]
 		},
+		"AssemblerMacros": {
+			"patterns": [
+				{
+					"comment": "Assembler pre-defined macro names",
+					"match": "\\b(__)(resetCode|setPPU|vectors|backupAXY|restoreAXY)(__)(?:\\s+(\\S.*))?",
+					"captures": {
+						"1": {
+							"name": "entity.name.class"
+						},
+						"2": {
+							"name": "storage"
+						},
+						"3": {
+							"name": "entity.name.class"
+						},
+						"4": {
+							"patterns": [
+								{ "include": "#numbers" },
+								{ "include": "#operators" },
+								{ "include": "#indexes" },
+								{ "include": "#functions" },
+								{ "include": "#assembler-constants" },
+								{ "include": "#strings" }
+							]
+						}
+					}
+				}
+			]
+		},
+		"MultilineFollowupOperation": {
+			"match": "(::)([^:]+)(\\S.*)?",
+			"captures": {
+				"1": {
+					"name": "constant.character.escape"
+				},
+				"2": {
+					"patterns": [
+						{ "include": "#DirectiveStart" },
+						{ "include": "#Instructions" },
+						{ "include": "#InstructionsNavi" }
+					]
+				},
+				"3": {
+					"patterns": [
+						{"include": "#MultilineFollowupOperation"}
+					]
+				}
+			}
+		},
 		"MiscUnknownOperation": {
 			"patterns": [
 				{
@@ -411,7 +484,11 @@
 				},
 				{
 					"name": "string.quoted",
-					"match": "'.'"
+					"match": "'.*?'"
+				},
+				{
+					"name": "support.type",
+					"match": "`.*?`"
 				}
 			]
 		},
@@ -453,7 +530,7 @@
 		
 		
 		"labeled-directives-multi": {
-			"match": "(?i)\\b(charmap|endcharmap|macro|endm|namespace|endnamespace)\\b",
+			"match": "(?i)\\b(charmap|macro|endm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
 			"captures": {
 				"1": { "name": "storage" }
 			}
@@ -470,7 +547,13 @@
 						"2": {
 							"name": "entity.name.class"
 						}
-					}
+					},
+					"complete": [
+						{
+							"label": "a",
+							"kind": "property"
+						}
+					]
 				},
 				{
 					"match": "\\b(PPUCTRL)(?:\\.(nameTable0|nameTable1|nameTable2|nameTable3|drawDirection|spritePatternTable|bgPatternTable|use8x16Sprites|masterSlave|enableNMI))?\\b",
@@ -525,6 +608,7 @@
 					}
 				}
 			]
+			
 		},
 
 		"functions": {
@@ -548,5 +632,6 @@
 			}
 		}
 	},
+	
 	"scopeName": "source.6502"
 }

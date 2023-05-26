@@ -3,41 +3,43 @@
     "displayName": "NESASM 6502 Syntax Highlighting",
     "description": "Support for 6502 assembly code on Nintasm/NESASM",
     "version": "2.0.0",
-	"publisher": "Sivak",
+    "publisher": "Sivak",
     "categories": [
         "Programming Languages"
     ],
-	"keywords": [
-		"6502",
-		"nesasm",
-		"assembly"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/sivakgames/nesasm-vscodehighlight"
-	},
-	"engines": {
+    "keywords": [
+        "6502",
+        "nesasm",
+        "assembly"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sivakgames/nesasm-vscodehighlight"
+    },
+    "engines": {
         "vscode": "^1.62.0"
     },
     "contributes": {
-		"languages": [
-			{
-				"id": "6502",
-				"aliases": [
-					"6502 Assembler (NESASM/Nintasm)",
-					"6502"
-				],
-				"extensions": [
-					".6502",
-					".asm"
-				],
-				"configuration": "./language-configuration.json"
-			}
-		],
-        "grammars": [{
-            "language": "6502",
-            "scopeName": "source.6502",
-            "path": "./syntaxes/6502.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "6502",
+                "aliases": [
+                    "6502 Assembler (NESASM/Nintasm)",
+                    "6502"
+                ],
+                "extensions": [
+                    ".6502",
+                    ".asm"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "6502",
+                "scopeName": "source.6502",
+                "path": "./syntaxes/6502.tmLanguage.json"
+            }
+        ]
     }
 }
