@@ -162,7 +162,7 @@
 			"patterns": [
 				{
 					"comment": "Directives (iNES)",
-					"match": "(?i)(inesprg|ineschr|inesmap|inesmir)\\s+(\\S.*)",
+					"match": "(?i)(inesprg|ineschr|inesmap|inesmir|inesbat)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -261,7 +261,7 @@
 				},
 				{
 					"comment": "Directives (Misc)",
-					"match": "(?i)(autozp|autozeropage|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case)\\s+(\\S.*)",
+					"match": "(?i)(autozp|autozeropage|ikv|kv|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|throw)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -276,7 +276,7 @@
 				},
 				{
 					"comment": "Directives (No operands)",
-					"match": "(?i)(endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap)",
+					"match": "(?i)(endikv|endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap)",
 					"captures": {
 						"1": { "name": "storage" }
 					}
@@ -530,7 +530,7 @@
 		
 		
 		"labeled-directives-multi": {
-			"match": "(?i)\\b(charmap|macro|endm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
+			"match": "(?i)\\b(charmap|macro|endm|kvmacro|endkvm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
 			"captures": {
 				"1": { "name": "storage" }
 			}
@@ -612,7 +612,7 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(high|low|bank|reversestr|strlen|sin|cos|sqrt|tocharmap)\\b",
+			"match": "(?i)\\b(high|low|bank|reversestr|strlen|substr|sin|cos|sqrt|tocharmap)\\b",
 			"captures": {
 				"1": { "name": "support.type" }
 			}
