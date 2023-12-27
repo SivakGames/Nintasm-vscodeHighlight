@@ -225,6 +225,25 @@
 					}
 				},
 				{
+					"comment": "Mixed Byte Directives",
+					"match": "(?i)(d_[bwe]+_?)\\s+([^:]*)",
+					"captures": {
+						"1": { "name": "storage" },
+						"2": {
+							"patterns": [
+								{ "include": "#numbers" },
+								{ "include": "#strings" },
+								{ "include": "#operators" },
+								{ "include": "#functions" },
+								{ "include": "#assembler-constants" },
+								{ "include": "#local-label-operands" },
+								{ "include": "#label-operands" },
+								{ "include": "#assembler-constants" }
+							]
+						}
+					}
+				},
+				{
 					"comment": "Directives (multiline)",
 					"match": "(?i)(mo|multiOp)\\s+([^:]*)(\\S.*)",
 					"captures": {
