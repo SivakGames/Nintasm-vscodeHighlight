@@ -288,6 +288,7 @@
 								{ "include": "#numbers" },
 								{ "include": "#strings" },
 								{ "include": "#operators" },
+								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
 							]
 						}
@@ -631,7 +632,7 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(high|low|bank|reversestr|strlen|substr|sin|cos|sqrt|tocharmap)\\b",
+			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|namespacevaluestostr|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
 			"captures": {
 				"1": { "name": "support.type" }
 			}
