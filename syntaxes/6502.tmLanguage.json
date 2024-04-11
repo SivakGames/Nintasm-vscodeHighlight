@@ -138,6 +138,20 @@
 						"1": { "name": "support.class" },
 						"2": { "name": "constant.character.escape" }
 					}
+				},
+				{
+					"comment": "Template Label",
+					"match": "^(.+)(:)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{"include": "#template-strings"}
+							]
+						},
+						"2": {
+							"name": "constant.character.escape"
+						}
+					}
 				}
 			]
 		},
@@ -216,10 +230,10 @@
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#functions" },
+								{ "include": "#template-strings" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
-								{ "include": "#label-operands" },
-								{ "include": "#assembler-constants" }
+								{ "include": "#label-operands" }
 							]
 						}
 					}
@@ -235,10 +249,10 @@
 								{ "include": "#strings" },
 								{ "include": "#operators" },
 								{ "include": "#functions" },
+								{ "include": "#template-strings" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
-								{ "include": "#label-operands" },
-								{ "include": "#assembler-constants" }
+								{ "include": "#label-operands" }
 							]
 						}
 					}
@@ -323,6 +337,7 @@
 								{ "include": "#operators" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
+								{ "include": "#assembler-constants" },
 								{ "include": "#assembler-constants" }
 							]
 						}
@@ -345,6 +360,7 @@
 								{ "include": "#strings" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
+								{ "include": "#template-strings" },
 								{ "include": "#assembler-constants" }
 							]
 						}
@@ -397,6 +413,7 @@
 								{ "include": "#operators" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
+								{ "include": "#template-strings" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
 								{ "include": "#label-operands" }
@@ -416,6 +433,7 @@
 								{ "include": "#operators" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
+								{ "include": "#template-strings" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
 								{ "include": "#label-operands" }
@@ -513,6 +531,23 @@
 			]
 		},
 
+		"template-strings": {
+			"patterns": [
+				{
+					"name": "entity.name.class",
+					"match": "(l\").*?(\")",
+					"captures": {
+						"1": {
+							"name": "string.quoted"
+						},
+						"2": {
+							"name": "string.quoted"
+						}
+					}
+				}
+			]
+		},
+
 		"numbers": {
 			"patterns": [
 				{
@@ -542,7 +577,7 @@
 		},
 
 		"labeled-directives-single": {
-			"match": "(?i)\\b(func|rs)\\b",
+			"match": "(?i)\\b(func|gnsi|rs)\\b",
 			"captures": {
 				"1": { "name": "storage" }
 			}
