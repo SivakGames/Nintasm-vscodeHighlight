@@ -667,7 +667,7 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|namespacevaluestostr|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
+			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|bytesInCurrentLabel|bytesInLabel|namespacevaluestostr|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
 			"captures": {
 				"1": { "name": "support.type" }
 			}
