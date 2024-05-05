@@ -534,13 +534,21 @@
 		"template-strings": {
 			"patterns": [
 				{
-					"name": "entity.name.class",
-					"match": "(l\").*?(\")",
+					"name": "support.type",
+					"match": "(l\")(.*?)(\")",
 					"captures": {
 						"1": {
 							"name": "string.quoted"
 						},
 						"2": {
+							"patterns": [
+								{	
+									"name": "entity.name.class",
+									"match": "{.*?}"
+								}
+							]
+						},
+						"3": {
 							"name": "string.quoted"
 						}
 					}
@@ -667,7 +675,7 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|bytesInCurrentLabel|bytesInLabel|namespacevaluestostr|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
+			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|itemlen|subitem|bytelen|contains|index|bytesInCurrentLocal|bytesInLocal|bytesInCurrentLabel|bytesInLabel|namespacevaluestostr|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
 			"captures": {
 				"1": { "name": "support.type" }
 			}
