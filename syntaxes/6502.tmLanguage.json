@@ -70,6 +70,7 @@
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
 							]
@@ -96,6 +97,7 @@
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
 							]
@@ -145,7 +147,7 @@
 					"captures": {
 						"1": {
 							"patterns": [
-								{"include": "#template-strings"}
+								{"include": "#template-labels"}
 							]
 						},
 						"2": {
@@ -165,6 +167,7 @@
 						{ "include": "#Directives" },
 						{ "include": "#numbers" },
 						{ "include": "#strings" },
+						{ "include": "#template-strings" },
 						{ "include": "#operators" },
 						{ "include": "#assembler-constants" }
 					]
@@ -183,6 +186,7 @@
 							"patterns": [
 								{ "include": "#numbers" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#operators" },
 								{ "include": "#assembler-constants" }
 							]
@@ -198,6 +202,7 @@
 							"patterns": [
 								{ "include": "#numbers" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#operators" },
 								{ "include": "#assembler-constants" }
 							]
@@ -213,6 +218,7 @@
 							"patterns": [
 								{ "include": "#numbers" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#operators" },
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
@@ -230,7 +236,7 @@
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#functions" },
-								{ "include": "#template-strings" },
+								{ "include": "#template-labels" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
 								{ "include": "#label-operands" }
@@ -247,9 +253,10 @@
 							"patterns": [
 								{ "include": "#numbers" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#operators" },
 								{ "include": "#functions" },
-								{ "include": "#template-strings" },
+								{ "include": "#template-labels" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
 								{ "include": "#label-operands" }
@@ -286,6 +293,7 @@
 						"2": {
 							"patterns": [
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#numbers" }
 							]
@@ -301,6 +309,7 @@
 							"patterns": [
 								{ "include": "#numbers" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#operators" },
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" }
@@ -358,9 +367,10 @@
 								{ "include": "#numbers" },
 								{ "include": "#operators" },
 								{ "include": "#strings" },
+								{ "include": "#template-strings" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
-								{ "include": "#template-strings" },
+								{ "include": "#template-labels" },
 								{ "include": "#assembler-constants" }
 							]
 						}
@@ -413,7 +423,7 @@
 								{ "include": "#operators" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
-								{ "include": "#template-strings" },
+								{ "include": "#template-labels" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
 								{ "include": "#label-operands" }
@@ -433,7 +443,7 @@
 								{ "include": "#operators" },
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
-								{ "include": "#template-strings" },
+								{ "include": "#template-labels" },
 								{ "include": "#assembler-constants" },
 								{ "include": "#local-label-operands" },
 								{ "include": "#label-operands" }
@@ -466,7 +476,8 @@
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" },
-								{ "include": "#strings" }
+								{ "include": "#strings" },
+								{ "include": "#template-strings" }
 							]
 						}
 					}
@@ -506,7 +517,8 @@
 								{ "include": "#indexes" },
 								{ "include": "#functions" },
 								{ "include": "#assembler-constants" },
-								{ "include": "#strings" }
+								{ "include": "#strings" },
+								{ "include": "#template-strings" }
 							]
 						}
 					}
@@ -532,6 +544,31 @@
 		},
 
 		"template-strings": {
+			"patterns": [
+				{
+					"name": "string.quoted",
+					"match": "(s\")(.*?)(\")",
+					"captures": {
+						"1": {
+							"name": "string.quoted"
+						},
+						"2": {
+							"patterns": [
+								{
+									"name": "entity.name.class",
+									"match": "{.*?}"
+								}
+							]
+						},
+						"3": {
+							"name": "string.quoted"
+						}
+					}
+				}
+			]
+		},
+
+		"template-labels": {
 			"patterns": [
 				{
 					"name": "support.type",
@@ -574,7 +611,7 @@
 		},
 		"operators": {
 			"name": "constant.character.escape",
-			"match": "(\\+|-|\\*|/|%|\\&|\\||\\^|~|<|>|\\\\)"
+			"match": "(\\+|-|\\*|/|%|\\&|\\||\\^|~|<|>|=|\\?|\\\\)"
 		},
 		"indexes": {
 			"match": "(?i)(,)\\s*\\b(x|y)\\b",
