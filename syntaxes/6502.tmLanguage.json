@@ -302,7 +302,7 @@
 				},
 				{
 					"comment": "Directives (Misc)",
-					"match": "(?i)(autozp|autozeropage|ikv|kv|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|throw)\\s+(\\S.*)",
+					"match": "(?i)(autozp|autozeropage|ikv|kv|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|throw|deleteMacro)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -319,7 +319,7 @@
 				},
 				{
 					"comment": "Directives (No operands)",
-					"match": "(?i)(endikv|endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap)",
+					"match": "(?i)(endikv|endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap|exitMacro)",
 					"captures": {
 						"1": { "name": "storage" }
 					}
@@ -610,8 +610,10 @@
 			]
 		},
 		"operators": {
-			"name": "constant.character.escape",
-			"match": "(\\+|-|\\*|/|%|\\&|\\||\\^|~|<|>|=|\\?|\\\\)"
+			"match": "(\\+|-|\\*|/|%|\\&|\\||\\^|~|<|>|=|\\?|\\\\)",
+			"captures": {
+				"1": { "name": "constant.character.escape" }
+			}
 		},
 		"indexes": {
 			"match": "(?i)(,)\\s*\\b(x|y)\\b",
@@ -630,7 +632,7 @@
 		
 		
 		"labeled-directives-multi": {
-			"match": "(?i)\\b(charmap|macro|endm|kvmacro|endkvm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
+			"match": "(?i)\\b(charmap|macro|endm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
 			"captures": {
 				"1": { "name": "storage" }
 			}
