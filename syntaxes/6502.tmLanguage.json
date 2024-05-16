@@ -319,7 +319,7 @@
 				},
 				{
 					"comment": "Directives (No operands)",
-					"match": "(?i)(endikv|endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap|exitMacro)",
+					"match": "(?i)(endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap|exitMacro)",
 					"captures": {
 						"1": { "name": "storage" }
 					}
