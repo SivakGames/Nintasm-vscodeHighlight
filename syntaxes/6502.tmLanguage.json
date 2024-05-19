@@ -14,7 +14,6 @@
 		{ "include": "#Main-PreLine" }
 	],
 	"repository": {
-		
 		"Main-Comments": {
 			"name": "comment.line",
 			"match": "(;).*$",
@@ -45,7 +44,11 @@
 						{ "include": "#Instructions" },
 						{ "include": "#InstructionsNavi" },
 						{ "include": "#AssemblerMacros" },
-						{ "include": "#MiscUnknownOperation" }
+						{ "include": "#MiscUnknownOperation" },
+						{ "include": "#numbers" },
+						{ "include": "#operators" },
+						{ "include": "#strings" },
+						{ "include": "#template-strings" }
 					]
 				}
 			}
@@ -89,7 +92,8 @@
 						"2": { "name": "constant.character.escape" },
 						"3": {
 							"patterns": [
-								{ "include": "#labeled-directives-single" }
+								{ "include": "#labeled-directives-single" },
+								{ "include": "#labeled-directives-multi-with-operands" }
 							]
 						},
 						"4": {
@@ -302,7 +306,7 @@
 				},
 				{
 					"comment": "Directives (Misc)",
-					"match": "(?i)(autozp|autozeropage|ikv|kv|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|throw|deleteMacro)\\s+(\\S.*)",
+					"match": "(?i)(autozp|autozeropage|ikv|kv|range|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|reassign|throw|deleteMacro)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -319,7 +323,7 @@
 				},
 				{
 					"comment": "Directives (No operands)",
-					"match": "(?i)(endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap|exitMacro)",
+					"match": "(?i)(endikv|endrange|endrepeat|else|endif|default|endswitch|resetcharmap|resetexprmap|exitMacro)",
 					"captures": {
 						"1": { "name": "storage" }
 					}
@@ -629,10 +633,17 @@
 				"1": { "name": "storage" }
 			}
 		},
+
+		"labeled-directives-multi-with-operands": {
+			"match": "(?i)\\b(macro)\\b",
+			"captures": {
+				"1": { "name": "storage" }
+			}
+		},
 		
 		
 		"labeled-directives-multi": {
-			"match": "(?i)\\b(charmap|macro|endm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
+			"match": "(?i)\\b(charmap|endm|namespace|endnamespace|exprmap|endcharmap|endexprmap)\\b",
 			"captures": {
 				"1": { "name": "storage" }
 			}
