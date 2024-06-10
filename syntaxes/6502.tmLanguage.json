@@ -306,7 +306,7 @@
 				},
 				{
 					"comment": "Directives (Misc)",
-					"match": "(?i)(autozp|autozeropage|ikv|kv|range|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|reassign|throw|deleteMacro)\\s+(\\S.*)",
+					"match": "(?i)(autozp|autozeropage|ikv|kv|range|repeat|defchar|defcharrange|defexpr|setcharmap|setexprmap|if|elseif|switch|case|reassign|log|throw|deleteMacro)\\s+(\\S.*)",
 					"captures": {
 						"1": { "name": "storage" },
 						"2": {
@@ -725,7 +725,7 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|itemlen|subitem|bytelen|contains|index|bytesInCurrentLocal|bytesInLocal|bytesInCurrentLabel|bytesInLabel|namespacevaluestostr|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
+			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|arraylen|subarray|bytelen|contains|index|bytesInCurrentLocal|bytesInLocal|bytesInCurrentLabel|bytesInLabel|namespacevaluestoarray|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
 			"captures": {
 				"1": { "name": "support.type" }
 			}
