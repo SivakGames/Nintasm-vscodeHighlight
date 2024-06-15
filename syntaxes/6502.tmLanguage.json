@@ -725,7 +725,7 @@
 		},
 
 		"functions": {
-			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|arraylen|subarray|bytelen|contains|index|bytesInCurrentLocal|bytesInLocal|bytesInCurrentLabel|bytesInLabel|namespacevaluestoarray|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|sqrt)\\b",
+			"match": "(?i)\\b(low|high|bank|defined|strlen|reversestr|substr|arraylen|subarray|bytelen|contains|index|bytesInCurrentLocal|bytesInLocal|bytesInCurrentLabel|bytesInLabel|namespacevaluestoarray|tocharmap|round|floor|ceil|modfint|modfdeci|sin|cos|tan|sindeg|cosdeg|tandeg|sqrt)\\b",
 			"captures": {
 				"1": { "name": "support.type" }
 			}
