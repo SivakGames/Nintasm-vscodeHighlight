@@ -1,10 +1,12 @@
 # 6502 README
 
-Provides syntax highlighting for NESASM (an NES 6502 assembler) in VS Code.  Based on the TextMate syntax
+Provides syntax highlighting for Nintasm (an NES 6502 assembler) in VS Code.  Based on the TextMate syntax.
+
+- Note: Originally this was intended for NESASM and, to some extent, this will also work with NESASM projects.
 
 ## Features
 
-Highlights all the 6502 instructions, 6502 number types (i.e. binary, hex), NESASM-specific directives, and labels for labeled operations.
+Highlights all the 6502 instructions, 6502 number types (i.e. binary, hex), Nintasm-specific directives, functions, and labels for labeled operations.
 
 ## Requirements
 

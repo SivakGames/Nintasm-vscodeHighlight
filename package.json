@@ -1,7 +1,7 @@
 {
     "name": "6502",
-    "displayName": "NESASM 6502 Syntax Highlighting",
-    "description": "Support for 6502 assembly code on Nintasm/NESASM",
+    "displayName": "Nintasm 6502 Syntax Highlighting",
+    "description": "Supports highlighting for 6502 assembly code and directives for Nintasm",
     "version": "2.0.0",
     "publisher": "Sivak",
     "categories": [
@@ -9,12 +9,13 @@
     ],
     "keywords": [
         "6502",
-        "nesasm",
-        "assembly"
+        "nintasm",
+        "assembly",
+        "nesasm"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/sivakgames/nesasm-vscodehighlight"
+        "url": "https://github.com/SivakGames/Nintasm-vscodeHighlight"
     },
     "engines": {
         "vscode": "^1.62.0"
@@ -24,7 +25,7 @@
             {
                 "id": "6502",
                 "aliases": [
-                    "6502 Assembler (NESASM/Nintasm)",
+                    "6502 Assembler (Nintasm)",
                     "6502"
                 ],
                 "extensions": [
